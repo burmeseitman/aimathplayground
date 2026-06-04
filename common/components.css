@@ -456,13 +456,13 @@ input[type="range"]::-moz-range-thumb {
   padding: var(--space-sm) var(--space-md);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   font-family: var(--font-ui);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   line-height: 1.4;
   color: var(--clr-text-secondary);
 }
 
 .formula-title {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--clr-text-muted);
@@ -473,7 +473,7 @@ input[type="range"]::-moz-range-thumb {
 .formula-eq {
   font-family: var(--font-mono);
   color: #ffffff;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   margin: 6px 0;
   overflow-x: auto;
@@ -481,7 +481,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .formula-desc {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--clr-text-muted);
 }
 
