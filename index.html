@@ -62,13 +62,25 @@
     /* Pillar Cards Grid */
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: var(--space-lg);
       max-width: 1200px;
       width: 100%;
       padding: 0 var(--space-xl);
       margin: var(--space-2xl) auto;
       animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    @media (max-width: 1024px) {
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .pillar-card {
