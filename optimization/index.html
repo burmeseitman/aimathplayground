@@ -130,6 +130,28 @@
           </div>
           <div id="output-results"></div>
         </div>
+
+        <!-- Formulas Panel -->
+        <div class="panel animate-fade-in-up" style="animation-delay: 0.15s;">
+          <div class="panel-header">
+            <span class="panel-icon">🎓</span>
+            <h3>Formulas in AI</h3>
+          </div>
+          <div class="formula-container">
+            <div class="formula-card">
+              <div class="formula-title">Momentum Update</div>
+              <div class="formula-eq">v_t = β · v_{t-1} + g_t</div>
+              <div class="formula-eq">θ_{t+1} = θ_t - α · v_t</div>
+              <div class="formula-desc">ယခင် gradient များ၏ အရှိန်အဟုန်ကို သိမ်းဆည်းပြီး local minima နှင့် saddle points များမှ ကျော်လွှားရန် သုံးသည်။</div>
+            </div>
+            <div class="formula-card">
+              <div class="formula-title">Adam Optimizer</div>
+              <div class="formula-eq">m_t = β₁·m_{t-1} + (1-β₁)·g_t</div>
+              <div class="formula-eq">v_t = β₂·v_{t-1} + (1-β₂)·g_t²</div>
+              <div class="formula-desc">Adaptive learning rate နှင့် momentum နှစ်ခုလုံးကို ပေါင်းစပ်ထားသော ကမ္ဘာ့လူသုံးအများဆုံး deep learning optimizer ဖြစ်သည်။</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 3D Viewport -->

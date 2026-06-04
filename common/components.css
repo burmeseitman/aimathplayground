@@ -443,6 +443,48 @@ input[type="range"]::-moz-range-thumb {
   width: 100%;
 }
 
+/* ── Formula Card ────────────────────────────────────────── */
+.formula-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.formula-card {
+  background: rgba(0, 0, 0, 0.25);
+  border-left: 3px solid var(--pillar-color);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--clr-text-secondary);
+}
+
+.formula-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--clr-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.formula-eq {
+  font-family: var(--font-mono);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 6px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.formula-desc {
+  font-size: 0.72rem;
+  color: var(--clr-text-muted);
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
   .sim-layout {
