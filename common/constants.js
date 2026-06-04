@@ -1,5 +1,5 @@
 /**
- * constants.js — Shared constants for AI Math Toolkits
+ * constants.js — Shared constants for AI Math Playground
  */
 
 // ── Color Palettes ──────────────────────────────────────────

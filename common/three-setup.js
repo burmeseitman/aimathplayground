@@ -1,5 +1,5 @@
 /**
- * three-setup.js — Three.js scene factory for AI Math Toolkits
+ * three-setup.js — Three.js scene factory for AI Math Playground
  * Creates a pre-configured scene with camera, renderer, OrbitControls, and helpers.
  */
 import * as THREE from 'three';

@@ -1,5 +1,5 @@
 /**
- * math-utils.js — Shared math utilities for AI Math Toolkits
+ * math-utils.js — Shared math utilities for AI Math Playground
  */
 
 // ══════════════════════════════════════════════════════════════

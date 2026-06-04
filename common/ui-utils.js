@@ -1,5 +1,5 @@
 /**
- * ui-utils.js — Shared UI helpers for AI Math Toolkits
+ * ui-utils.js — Shared UI helpers for AI Math Playground
  */
 import { AI_CONTEXT } from './constants.js';
 
@@ -47,7 +47,7 @@ export function renderNav(activePillar, containerId, basePath = '..') {
   el.innerHTML = `
     <a class="nav-brand" href="${basePath}/index.html">
       <span class="nav-brand-icon">🧠</span>
-      <span>AI Math Toolkits</span>
+      <span>AI Math Playground</span>
     </a>
     <nav class="nav-links">
       ${links
