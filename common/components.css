@@ -433,6 +433,12 @@ input[type="range"]::-moz-range-thumb {
   border-color: var(--clr-border-hover);
   background: rgba(255, 255, 255, 0.04);
 }
+.btn-outline.active {
+  color: #0a0a0f;
+  background: var(--pillar-color);
+  border-color: var(--pillar-color);
+  box-shadow: 0 0 12px var(--pillar-glow);
+}
 
 .btn-sm {
   padding: 0.35rem 0.8rem;

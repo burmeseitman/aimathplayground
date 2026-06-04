@@ -17,11 +17,27 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAIContext('linear-algebra', 'ai-context');
   initVisualizer('viewport');
 
+  // Preset buttons state helper
+  const presetIds = ['preset-identity', 'preset-rotation', 'preset-scale', 'preset-shear'];
+  const updatePresetButtons = (activeId) => {
+    presetIds.forEach((id) => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        if (id === activeId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      }
+    });
+  };
+
   // Bind matrix inputs
   const matrixInputs = document.querySelectorAll('.matrix-grid .input-field');
   matrixInputs.forEach((input, idx) => {
     input.addEventListener('input', debounce(() => {
       matrix[idx] = parseFloat(input.value) || 0;
+      updatePresetButtons(null); // Clear active preset on manual change
       compute();
     }, 80));
   });
@@ -33,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 0);
 
   // Preset buttons
-  document.getElementById('preset-identity').addEventListener('click', () => setPreset([1, 0, 0, 0, 1, 0, 0, 0, 1]));
+  document.getElementById('preset-identity').addEventListener('click', () => setPreset([1, 0, 0, 0, 1, 0, 0, 0, 1], 'preset-identity'));
   document.getElementById('preset-rotation').addEventListener('click', () => {
     const a = Math.PI / 4;
-    setPreset([Math.cos(a), -Math.sin(a), 0, Math.sin(a), Math.cos(a), 0, 0, 0, 1]);
+    setPreset([Math.cos(a), -Math.sin(a), 0, Math.sin(a), Math.cos(a), 0, 0, 0, 1], 'preset-rotation');
   });
-  document.getElementById('preset-scale').addEventListener('click', () => setPreset([2, 0, 0, 0, 0.5, 0, 0, 0, 1.5]));
-  document.getElementById('preset-shear').addEventListener('click', () => setPreset([1, 0.8, 0, 0, 1, 0.5, 0.3, 0, 1]));
+  document.getElementById('preset-scale').addEventListener('click', () => setPreset([2, 0, 0, 0, 0.5, 0, 0, 0, 1.5], 'preset-scale'));
+  document.getElementById('preset-shear').addEventListener('click', () => setPreset([1, 0.8, 0, 0, 1, 0.5, 0.3, 0, 1], 'preset-shear'));
 
   // View toggles
   const btn3d = document.getElementById('btn-view-3d');
@@ -75,16 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Highlight initial Identity preset on start
+  updatePresetButtons('preset-identity');
+
   // Initial computation
   compute();
 });
 
-function setPreset(m) {
+function setPreset(m, presetId) {
   matrix = [...m];
   const inputs = document.querySelectorAll('.matrix-grid .input-field');
   inputs.forEach((input, idx) => {
     input.value = parseFloat(m[idx].toFixed(3));
   });
+  updatePresetButtons(presetId);
   compute();
 }
 
