@@ -1,5 +1,7 @@
 # 🎭 AI Math Playground
 
+[![Live Demo](https://img.shields.io/badge/demo-online-brightgreen.svg)](https://burmeseitman.github.io/aimathplayground/index.html)
+
 An interactive, responsive 3D simulation suite built to visualize the **4 foundational mathematical pillars of Artificial Intelligence**:
 1. **Linear Algebra**: 3D matrix transformations, basis vectors, and eigenvalues.
 2. **Calculus**: Dynamic gradient descent tracking on a 3D loss surface with step parameter control.
