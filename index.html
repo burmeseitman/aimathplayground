@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive 3D simulations of the 4 foundational math pillars of Artificial Intelligence: Linear Algebra, Calculus, Probability & Statistics, and Optimization.">
+  <title>AI Math Toolkits — The 4 Pillars of AI Mathematics</title>
+  <link rel="stylesheet" href="common/styles.css">
+  <style>
+    /* ── Landing Page Specific ─────────────────────────────── */
+    .landing {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-2xl) var(--space-xl);
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 0.3rem 1rem;
+      background: rgba(0, 212, 255, 0.08);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      color: var(--clr-primary);
+      font-weight: 500;
+      margin-bottom: var(--space-lg);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      margin-bottom: var(--space-md);
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--clr-text-secondary);
+      max-width: 640px;
+      line-height: 1.7;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    /* Pillar Cards Grid */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      max-width: 1200px;
+      width: 100%;
+      padding: 0 var(--space-xl);
+      margin: var(--space-2xl) auto;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .pillar-card {
+      position: relative;
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      background: var(--clr-bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--clr-border-glass);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--card-color, rgba(0,212,255,0.08)), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--card-accent, var(--clr-primary));
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px var(--card-glow, rgba(0, 212, 255, 0.15));
+    }
+
+    .pillar-card:hover::before {
+      opacity: 1;
+    }
+
+    .pillar-card[data-pillar="linear-algebra"] {
+      --card-color: rgba(0, 212, 255, 0.08);
+      --card-accent: #00d4ff;
+      --card-glow: rgba(0, 212, 255, 0.15);
+    }
+    .pillar-card[data-pillar="calculus"] {
+      --card-color: rgba(139, 92, 246, 0.08);
+      --card-accent: #8b5cf6;
+      --card-glow: rgba(139, 92, 246, 0.15);
+    }
+    .pillar-card[data-pillar="probability"] {
+      --card-color: rgba(16, 185, 129, 0.08);
+      --card-accent: #10b981;
+      --card-glow: rgba(16, 185, 129, 0.15);
+    }
+    .pillar-card[data-pillar="optimization"] {
+      --card-color: rgba(245, 158, 11, 0.08);
+      --card-accent: #f59e0b;
+      --card-glow: rgba(245, 158, 11, 0.15);
+    }
+
+    .card-icon {
+      font-size: 2.4rem;
+      margin-bottom: var(--space-md);
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--clr-text);
+      margin-bottom: var(--space-xs);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-subtitle {
+      font-size: 0.82rem;
+      color: var(--card-accent, var(--clr-primary));
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--clr-text-secondary);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.35s ease;
+      color: var(--card-accent, var(--clr-primary));
+    }
+
+    .pillar-card:hover .card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Canvas Background */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Footer */
+    .landing-footer {
+      text-align: center;
+      padding: var(--space-xl);
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="landing">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge">✨ အပြန်အလှန်သက်ရောက်မှုရှိသော 3D Simulations</div>
+      <h1>AI ၏ အခြေခံ သင်္ချာမဏ္ဍိုင်ကြီး ၄ ခု</h1>
+      <p class="hero-subtitle">
+        Neural Network transformations မှစ၍ Optimizer dynamics အထိ Artificial Intelligence (AI) ကို စွမ်းအားပေးထားသည့် အခြေခံ သင်္ချာဘာသာရပ်များကို လှည့်ပတ်ကြည့်ရှုနိုင်သော 3D Visualizations များမှတစ်ဆင့် လေ့လာစူးစမ်းပါ။
+      </p>
+    </section>
+
+    <!-- Pillar Cards -->
+    <section class="pillars-grid stagger" id="pillars-grid">
+      <a href="./linear-algebra/index.html" class="pillar-card" data-pillar="linear-algebra">
+        <span class="card-icon">🔢</span>
+        <div class="card-title">Linear Algebra</div>
+        <div class="card-subtitle">Vectors, Matrices & Transformations</div>
+        <p class="card-desc">
+          Matrix transformations များက Neural Network layers များ၊ PCA နှင့် Data Embeddings များကို မည်သို့ စွမ်းအားပေးသည်ကို လေ့လာစူးစမ်းပါ။
+        </p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="./calculus/index.html" class="pillar-card" data-pillar="calculus">
+        <span class="card-icon">📐</span>
+        <div class="card-title">Calculus</div>
+        <div class="card-subtitle">Gradients, Derivatives & Chain Rule</div>
+        <p class="card-desc">
+          3D surfaces ပေါ်ရှိ Gradient Vectors များကို ပုံဖော်ကြည့်ရှုပြီး Backpropagation မည်သို့ အလုပ်လုပ်သည်ကို နားလည်သဘောပေါက်စေရန် လေ့လာပါ။
+        </p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="./probability/index.html" class="pillar-card" data-pillar="probability">
+        <span class="card-icon">🎲</span>
+        <div class="card-title">Probability & Statistics</div>
+        <div class="card-subtitle">Distributions, Bayes & Sampling</div>
+        <p class="card-desc">
+          Multivariate Gaussian Distributions များကို ပုံဖော်ပြီး AI က မရေရာမှု (Uncertainty) များကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို ကြည့်ရှုပါ။
+        </p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="./optimization/index.html" class="pillar-card" data-pillar="optimization">
+        <span class="card-icon">🎯</span>
+        <div class="card-title">Optimization</div>
+        <div class="card-subtitle">Gradient Descent, Momentum & Adam</div>
+        <p class="card-desc">
+          3D Loss Landscapes ပေါ်တွင် Optimizers များကို ယှဉ်ပြိုင်ပြေးစေပြီး Neural Networks များ မည်သို့ သင်ယူလေ့လာသည်ကို ရှာဖွေပါ။
+        </p>
+        <span class="card-arrow">→</span>
+      </a>
+    </section>
+
+    <footer class="landing-footer">
+      AI Math Toolkits — ဉာဏ်ရည်တု၏ နောက်ကွယ်မှ သင်္ချာသဘောတရားများကို နားလည်သဘောပေါက်ခြင်း
+    </footer>
+  </div>
+
+  <script>
+    // ── Animated Particle Background ──────────────────────────
+    (() => {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      const particles = [];
+      const PARTICLE_COUNT = 80;
+      const CONNECTION_DIST = 150;
+
+      const colors = ['#00d4ff', '#8b5cf6', '#10b981', '#f59e0b'];
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      function initParticles() {
+        particles.length = 0;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          particles.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 2 + 0.5,
+            color: colors[Math.floor(Math.random() * colors.length)],
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < CONNECTION_DIST) {
+              const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(100, 150, 255, ${alpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw particles
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          // Wrap
+          if (p.x < 0) p.x = W;
+          if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H;
+          if (p.y > H) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.6;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', () => {
+        resize();
+      });
+
+      resize();
+      initParticles();
+      draw();
+    })();
+  </script>
+</body>
+</html>

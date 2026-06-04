@@ -1,0 +1,5 @@
+/* Probability & Statistics — Pillar-specific styles */
+:root {
+  --pillar-color: #10b981;
+  --pillar-glow: rgba(16, 185, 129, 0.25);
+}

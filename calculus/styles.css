@@ -1,0 +1,5 @@
+/* Calculus — Pillar-specific styles */
+:root {
+  --pillar-color: #8b5cf6;
+  --pillar-glow: rgba(139, 92, 246, 0.25);
+}

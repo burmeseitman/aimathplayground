@@ -1,0 +1,5 @@
+/* Linear Algebra — Pillar-specific styles */
+:root {
+  --pillar-color: #00d4ff;
+  --pillar-glow: rgba(0, 212, 255, 0.25);
+}

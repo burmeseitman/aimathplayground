@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive 3D simulation of bivariate Gaussian distributions — explore how probability distributions power generative AI and Bayesian inference.">
+  <title>Probability & Statistics — AI Math Toolkits</title>
+  <link rel="stylesheet" href="../common/styles.css">
+  <link rel="stylesheet" href="../common/components.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="nav" id="nav-bar"></header>
+
+  <!-- Main Layout -->
+  <main class="page-body">
+    <div class="sim-layout">
+      <!-- Side Panel -->
+      <div class="side-panel">
+        <!-- Input Panel -->
+        <div class="panel animate-fade-in-up">
+          <div class="panel-header">
+            <span class="panel-icon">📥</span>
+            <h3>ထည့်သွင်းမှု — Distribution Parameters</h3>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Mean μx</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="mu-x" min="-3" max="3" value="0" step="0.1">
+                <span class="slider-value" id="mu-x-val">0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Mean μy</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="mu-y" min="-3" max="3" value="0" step="0.1">
+                <span class="slider-value" id="mu-y-val">0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Std Dev σx</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="sig-x" min="0.2" max="3" value="1" step="0.1">
+                <span class="slider-value" id="sig-x-val">1.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Std Dev σy</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="sig-y" min="0.2" max="3" value="1" step="0.1">
+                <span class="slider-value" id="sig-y-val">1.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Correlation ρ</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="rho" min="-0.95" max="0.95" value="0" step="0.05">
+                <span class="slider-value" id="rho-val">0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">နမူနာအရေအတွက် (Number of Samples)</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="num-samples" min="100" max="2000" value="500" step="50">
+                <span class="slider-value" id="num-samples-val">500</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="panel animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="panel-header">
+            <span class="panel-icon">📤</span>
+            <h3>ရလဒ် — Statistical Analysis</h3>
+          </div>
+          <div id="output-results"></div>
+        </div>
+      </div>
+
+      <!-- 3D Viewport -->
+      <div class="viewport-container animate-fade-in-up" style="animation-delay: 0.15s;">
+        <div id="viewport" style="width:100%; height:100%;"></div>
+        <div class="viewport-badge">🎲 Probability</div>
+        <div class="viewport-hint">🖱️ လှည့်ရန် ဖိဆွဲပါ · ချုံ့/ချဲ့ရန် Scroll သုံးပါ</div>
+      </div>
+
+      <!-- AI Context -->
+      <div class="ai-context animate-fade-in-up" id="ai-context" style="animation-delay: 0.2s;"></div>
+    </div>
+  </main>
+
+  <script type="module" src="simulation.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive 3D optimization simulation — race SGD, Momentum, and Adam optimizers on loss landscapes to understand how neural networks train.">
+  <title>Optimization — AI Math Toolkits</title>
+  <link rel="stylesheet" href="../common/styles.css">
+  <link rel="stylesheet" href="../common/components.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="nav" id="nav-bar"></header>
+
+  <!-- Main Layout -->
+  <main class="page-body">
+    <div class="sim-layout">
+      <!-- Side Panel -->
+      <div class="side-panel">
+        <!-- Input Panel -->
+        <div class="panel animate-fade-in-up">
+          <div class="panel-header">
+            <span class="panel-icon">📥</span>
+            <h3>ထည့်သွင်းမှု — Optimizer Config</h3>
+          </div>
+
+          <!-- Loss Function -->
+          <div class="input-group">
+            <label class="input-label">Loss Function</label>
+            <select class="input-select" id="loss-fn">
+              <option value="rosenbrock">Rosenbrock</option>
+              <option value="rastrigin">Rastrigin</option>
+              <option value="ackley">Ackley</option>
+              <option value="beale">Beale</option>
+            </select>
+          </div>
+
+          <!-- Optimizer -->
+          <div class="input-group">
+            <label class="input-label">Optimizer</label>
+            <select class="input-select" id="optimizer-select">
+              <option value="adam">Adam</option>
+              <option value="momentum">SGD + Momentum</option>
+              <option value="sgd">Vanilla SGD</option>
+            </select>
+          </div>
+
+          <!-- Starting Point -->
+          <div class="input-group">
+            <label class="input-label">စတင်သည့်အမှတ် (Starting Point) x₀</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="start-x" min="-3" max="3" value="-1.5" step="0.1">
+                <span class="slider-value" id="start-x-val">-1.50</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">စတင်သည့်အမှတ် (Starting Point) y₀</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="start-y" min="-3" max="3" value="-1.5" step="0.1">
+                <span class="slider-value" id="start-y-val">-1.50</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Learning Rate -->
+          <div class="input-group">
+            <label class="input-label">Learning Rate α</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="learning-rate" min="0.0001" max="0.5" value="0.01" step="0.0001">
+                <span class="slider-value" id="learning-rate-val">0.0100</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Momentum Beta -->
+          <div class="input-group">
+            <label class="input-label">Momentum β</label>
+            <div class="slider-container">
+              <div class="slider-row" id="momentum-row">
+                <input type="range" id="momentum-val-input" min="0" max="0.999" value="0.9" step="0.001">
+                <span class="slider-value" id="momentum-display">0.900</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Max Iterations -->
+          <div class="input-group">
+            <label class="input-label">အများဆုံးပတ်ပတ်လည် (Max Iterations)</label>
+            <div class="slider-container">
+              <div class="slider-row">
+                <input type="range" id="max-iter" min="50" max="500" value="200" step="10">
+                <span class="slider-value" id="max-iter-val">200</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-primary" id="btn-run" style="flex:1;">
+              ▶ Run ပါ
+            </button>
+            <button class="btn btn-outline" id="btn-race" style="flex:1;" title="Optimizers ၃ ခုလုံးကို ယှဉ်ပြိုင်ကြည့်ပါ">
+              🏁 Race All (ယှဉ်ပြိုင်ပါ)
+            </button>
+          </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="panel animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="panel-header">
+            <span class="panel-icon">📤</span>
+            <h3>ရလဒ် — Optimizer Results</h3>
+          </div>
+          <div id="output-results"></div>
+        </div>
+      </div>
+
+      <!-- 3D Viewport -->
+      <div class="viewport-container animate-fade-in-up" style="animation-delay: 0.15s;">
+        <div id="viewport" style="width:100%; height:100%;"></div>
+        <div class="viewport-badge">🎯 Optimization</div>
+        <div class="viewport-hint">🖱️ လှည့်ရန် ဖိဆွဲပါ · ချုံ့/ချဲ့ရန် Scroll သုံးပါ</div>
+      </div>
+
+      <!-- AI Context -->
+      <div class="ai-context animate-fade-in-up" id="ai-context" style="animation-delay: 0.2s;"></div>
+    </div>
+  </main>
+
+  <script type="module" src="simulation.js"></script>
+</body>
+</html>
