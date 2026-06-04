@@ -11,26 +11,26 @@ let matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1]; // Identity
 let numPoints = 200;
 let activeView = '3d'; // '3d' or 'ann'
 
+// Preset buttons state helper
+const presetIds = ['preset-identity', 'preset-rotation', 'preset-scale', 'preset-shear'];
+function updatePresetButtons(activeId) {
+  presetIds.forEach((id) => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      if (id === activeId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    }
+  });
+}
+
 // ── Init ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderNav('linear-algebra', 'nav-bar', '..');
   renderAIContext('linear-algebra', 'ai-context');
   initVisualizer('viewport');
-
-  // Preset buttons state helper
-  const presetIds = ['preset-identity', 'preset-rotation', 'preset-scale', 'preset-shear'];
-  const updatePresetButtons = (activeId) => {
-    presetIds.forEach((id) => {
-      const btn = document.getElementById(id);
-      if (btn) {
-        if (id === activeId) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      }
-    });
-  };
 
   // Bind matrix inputs
   const matrixInputs = document.querySelectorAll('.matrix-grid .input-field');
