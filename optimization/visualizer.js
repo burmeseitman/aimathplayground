@@ -116,12 +116,20 @@ export function updateSurface(fn, range, zScale, resolution = 80) {
   surfaceMesh._wire = wire;
 }
 
+let pathAnimations = [];
+
 /**
  * Clear all optimizer paths.
  */
 export function clearPaths() {
   if (!sceneCtx) return;
   const { scene } = sceneCtx;
+
+  // Cancel any running animations
+  for (const animId of pathAnimations) {
+    cancelAnimationFrame(animId);
+  }
+  pathAnimations = [];
 
   for (const line of pathLines) {
     scene.remove(line);
@@ -142,24 +150,11 @@ export function clearPaths() {
 /**
  * Render an optimizer's path on the surface.
  */
-export function addOptimizerPath(path, optimizerType, zScale) {
+export function addOptimizerPath(path, optimizerType, zScale, animate = false) {
   if (!sceneCtx || path.length < 2) return;
   const { scene } = sceneCtx;
 
   const color = OPTIMIZER_COLORS[optimizerType] || 0xffffff;
-
-  // Build path line
-  const points = path.map((p) => new THREE.Vector3(p.x, p.z * zScale + 0.03, p.y));
-  const geom = new THREE.BufferGeometry().setFromPoints(points);
-  const mat = new THREE.LineBasicMaterial({
-    color,
-    transparent: true,
-    opacity: 0.9,
-    linewidth: 2,
-  });
-  const line = new THREE.Line(geom, mat);
-  scene.add(line);
-  pathLines.push(line);
 
   // Start ball
   const start = path[0];
@@ -168,12 +163,61 @@ export function addOptimizerPath(path, optimizerType, zScale) {
   scene.add(startBall);
   pathBalls.push(startBall);
 
-  // End ball (larger)
-  const end = path[path.length - 1];
+  // End ball (larger, representing the current/end position)
   const endBall = createGlowSphere(0.1, color);
-  endBall.position.set(end.x, end.z * zScale + 0.05, end.y);
   scene.add(endBall);
   pathBalls.push(endBall);
+
+  const mat = new THREE.LineBasicMaterial({
+    color,
+    transparent: true,
+    opacity: 0.9,
+    linewidth: 2,
+  });
+
+  let line = null;
+
+  if (!animate) {
+    const points = path.map((p) => new THREE.Vector3(p.x, p.z * zScale + 0.03, p.y));
+    const geom = new THREE.BufferGeometry().setFromPoints(points);
+    line = new THREE.Line(geom, mat);
+    scene.add(line);
+    pathLines.push(line);
+
+    const end = path[path.length - 1];
+    endBall.position.set(end.x, end.z * zScale + 0.05, end.y);
+  } else {
+    let index = 1;
+    const animStep = () => {
+      if (index > path.length) {
+        return;
+      }
+
+      const currentPath = path.slice(0, index);
+      const points = currentPath.map((p) => new THREE.Vector3(p.x, p.z * zScale + 0.03, p.y));
+
+      if (line) {
+        scene.remove(line);
+        line.geometry.dispose();
+      }
+
+      const geom = new THREE.BufferGeometry().setFromPoints(points);
+      line = new THREE.Line(geom, mat);
+      scene.add(line);
+      pathLines.push(line);
+
+      const currentPoint = path[index - 1];
+      endBall.position.set(currentPoint.x, currentPoint.z * zScale + 0.05, currentPoint.y);
+
+      // Speed up animation if path is very long
+      const stepSize = Math.max(1, Math.floor(path.length / 50));
+      index += stepSize;
+
+      const animId = requestAnimationFrame(animStep);
+      pathAnimations.push(animId);
+    };
+    animStep();
+  }
 }
 
 /**

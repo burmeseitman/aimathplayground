@@ -139,42 +139,87 @@ export function updateGradientField(gradientVectors, zScale = 1) {
   }
 }
 
+let animationFrameId = null;
+
 /**
  * Render the gradient descent path.
  */
-export function updateDescentPath(path, zScale = 1) {
+export function updateDescentPath(path, zScale = 1, animate = false) {
   if (!sceneCtx) return;
   const { scene } = sceneCtx;
+
+  // Cancel any running animation
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
 
   // Clear old path
   if (descentPathLine) {
     scene.remove(descentPathLine);
     descentPathLine.geometry.dispose();
     descentPathLine.material.dispose();
+    descentPathLine = null;
   }
   if (descentBall) {
     scene.remove(descentBall);
+    descentBall = null;
   }
 
   if (path.length < 2) return;
 
-  // Build path geometry
-  const points = path.map(([x, y, z]) => new THREE.Vector3(x, z * zScale + 0.02, y));
-  const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  const color = 0xff6b6b;
+  descentBall = createGlowSphere(0.08, color);
+  scene.add(descentBall);
+
   const material = new THREE.LineBasicMaterial({
-    color: 0xff6b6b,
+    color,
     linewidth: 2,
     transparent: true,
     opacity: 0.9,
   });
-  descentPathLine = new THREE.Line(geometry, material);
-  scene.add(descentPathLine);
 
-  // Ball at final position
-  const last = path[path.length - 1];
-  descentBall = createGlowSphere(0.08, 0xff6b6b);
-  descentBall.position.set(last[0], last[2] * zScale + 0.05, last[1]);
-  scene.add(descentBall);
+  if (!animate) {
+    const points = path.map(([x, y, z]) => new THREE.Vector3(x, z * zScale + 0.02, y));
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    descentPathLine = new THREE.Line(geometry, material);
+    scene.add(descentPathLine);
+
+    const last = path[path.length - 1];
+    descentBall.position.set(last[0], last[2] * zScale + 0.05, last[1]);
+  } else {
+    let index = 1;
+    const animateStep = () => {
+      if (index > path.length) {
+        animationFrameId = null;
+        return;
+      }
+
+      // Draw path up to current index
+      const currentPath = path.slice(0, index);
+      const points = currentPath.map(([x, y, z]) => new THREE.Vector3(x, z * zScale + 0.02, y));
+      
+      if (descentPathLine) {
+        scene.remove(descentPathLine);
+        descentPathLine.geometry.dispose();
+      }
+
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      descentPathLine = new THREE.Line(geometry, material);
+      scene.add(descentPathLine);
+
+      // Move ball
+      const currentPoint = path[index - 1];
+      descentBall.position.set(currentPoint[0], currentPoint[2] * zScale + 0.05, currentPoint[1]);
+
+      // Speed up animation if path is very long
+      const stepSize = Math.max(1, Math.floor(path.length / 50));
+      index += stepSize;
+
+      animationFrameId = requestAnimationFrame(animateStep);
+    };
+    animateStep();
+  }
 }
 
 /**

@@ -21,28 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAIContext('optimization', 'ai-context');
   initVisualizer('viewport');
 
-  bindSelect('loss-fn', (val) => { currentLossKey = val; compute(); });
+  bindSelect('loss-fn', (val) => { currentLossKey = val; compute(false); });
   bindSelect('optimizer-select', (val) => {
     optimizer = val;
     // Show/hide momentum row
     const momRow = document.getElementById('momentum-row');
     if (momRow) momRow.style.display = (val === 'sgd') ? 'none' : 'flex';
-    compute();
+    compute(false);
   });
 
-  bindSlider('start-x', 'start-x-val', (v) => { startX = v; compute(); });
-  bindSlider('start-y', 'start-y-val', (v) => { startY = v; compute(); });
-  bindSlider('learning-rate', 'learning-rate-val', (v) => { lr = v; compute(); }, 4);
-  bindSlider('momentum-val-input', 'momentum-display', (v) => { momentum = v; compute(); }, 3);
-  bindSlider('max-iter', 'max-iter-val', (v) => { maxIter = Math.floor(v); compute(); }, 0);
+  bindSlider('start-x', 'start-x-val', (v) => { startX = v; compute(false); });
+  bindSlider('start-y', 'start-y-val', (v) => { startY = v; compute(false); });
+  bindSlider('learning-rate', 'learning-rate-val', (v) => { lr = v; compute(false); }, 4);
+  bindSlider('momentum-val-input', 'momentum-display', (v) => { momentum = v; compute(false); }, 3);
+  bindSlider('max-iter', 'max-iter-val', (v) => { maxIter = Math.floor(v); compute(false); }, 0);
 
-  document.getElementById('btn-run').addEventListener('click', () => compute());
-  document.getElementById('btn-race').addEventListener('click', () => raceAll());
+  document.getElementById('btn-run').addEventListener('click', () => compute(true));
+  document.getElementById('btn-race').addEventListener('click', () => raceAll(true));
 
-  compute();
+  compute(false);
 });
 
-function compute() {
+function compute(animate = false) {
   const lossData = LOSS_FUNCTIONS[currentLossKey];
   const fn = lossData.fn;
   const range = lossData.range;
@@ -68,7 +68,7 @@ function compute() {
       path = runSGD(fn, startX, startY, lr, maxIter);
   }
 
-  addOptimizerPath(path, optimizer, zScale);
+  addOptimizerPath(path, optimizer, zScale, animate);
   markMinimum(lossData.minimum[0], lossData.minimum[1], fn, zScale);
 
   const last = path[path.length - 1];
@@ -86,7 +86,7 @@ function compute() {
   ]);
 }
 
-function raceAll() {
+function raceAll(animate = false) {
   const lossData = LOSS_FUNCTIONS[currentLossKey];
   const fn = lossData.fn;
   const range = lossData.range;
@@ -99,9 +99,9 @@ function raceAll() {
   const momPath = runMomentum(fn, startX, startY, lr, momentum, maxIter);
   const adamPath = runAdam(fn, startX, startY, lr, 0.9, 0.999, maxIter);
 
-  addOptimizerPath(sgdPath, 'sgd', zScale);
-  addOptimizerPath(momPath, 'momentum', zScale);
-  addOptimizerPath(adamPath, 'adam', zScale);
+  addOptimizerPath(sgdPath, 'sgd', zScale, animate);
+  addOptimizerPath(momPath, 'momentum', zScale, animate);
+  addOptimizerPath(adamPath, 'adam', zScale, animate);
   markMinimum(lossData.minimum[0], lossData.minimum[1], fn, zScale);
 
   const sgdLast = sgdPath[sgdPath.length - 1];

@@ -21,21 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Bind function selector
   bindSelect('fn-select', (val) => {
     currentFnKey = val;
-    compute();
+    compute(false);
   });
 
   // Bind sliders
-  bindSlider('start-x', 'start-x-val', (val) => { startX = val; compute(); });
-  bindSlider('start-y', 'start-y-val', (val) => { startY = val; compute(); });
-  bindSlider('learning-rate', 'learning-rate-val', (val) => { learningRate = val; compute(); }, 3);
+  bindSlider('start-x', 'start-x-val', (val) => { startX = val; compute(false); });
+  bindSlider('start-y', 'start-y-val', (val) => { startY = val; compute(false); });
+  bindSlider('learning-rate', 'learning-rate-val', (val) => { learningRate = val; compute(false); }, 3);
 
   // Run button
-  document.getElementById('btn-run-descent').addEventListener('click', () => compute());
+  document.getElementById('btn-run-descent').addEventListener('click', () => compute(true));
 
-  compute();
+  compute(false);
 });
 
-function compute() {
+function compute(animate = false) {
   const funcData = FUNCTIONS[currentFnKey];
   const fn = funcData.fn;
   const range = funcData.range;
@@ -59,7 +59,7 @@ function compute() {
   updateGradientField(gField, zScale);
 
   // Render descent path
-  updateDescentPath(path, zScale);
+  updateDescentPath(path, zScale, animate);
 
   // Render start point marker
   updatePointMarker(startX, startY, z0, zScale);

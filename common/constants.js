@@ -60,42 +60,27 @@ export const AI_CONTEXT = {
   'linear-algebra': {
     title: 'AI တွင် Linear Algebra ၏ အခန်းကဏ္ဍ',
     icon: '🔢',
-    description: `Neural Network Layer တိုင်းသည် <strong>Matrix-Vector Multiplication</strong> ကို လုပ်ဆောင်သည် - 
-      Weight Matrix က Input Features များကို ကိုယ်စားပြုမှုအသစ်များအဖြစ်သို့ အသွင်ပြောင်းပေးသည်။ 
-      Eigenvalues များသည် မည်သည့် ဦးတည်ချက်များက အပြောင်းလဲဆုံးအခြေအနေကို သယ်ဆောင်သည်ကို ဖော်ပြပေးပြီး (PCA)၊ 
-      SVD သည် Recommendation Systems များကို လုပ်ဆောင်ပေးသည်။ သင် 3D တွင် မြင်တွေ့ရသော Transformation သည် 
-      Deep Neural Network ၏ Layer တစ်ခုချင်းစီအတွင်း၌ <em>အမှန်တကယ်</em> ဖြစ်ပျက်နေသော အရာပင် ဖြစ်သည်။`,
+    description: `Neural Network Layer တိုင်းဟာ အခြေခံအားဖြင့် Matrix-Vector Multiplication ကို သုံးပြီး Input Features တွေကို ပိုမိုနက်ရှိုင်းတဲ့ Feature Representations အဖြစ် အသွင်ပြောင်းပေးတာဖြစ်ပါတယ်။ ဒီနေရာမှာ Vector Transformation တွေရဲ့ သဘောတရားကို နားလည်ဖို့ Eigenvalues နဲ့ Eigenvectors က အရေးကြီးပါတယ်။ Eigenvector က Linear Transformation တစ်ခုအတွင်း လားရာမပြောင်းလဲတဲ့ ဦးတည်ချက်ကို ပြသပြီး၊ Eigenvalue ကတော့ အဲဒီဦးတည်ချက်အတိုင်း Vector မည်မျှ ဆန့်ထုတ်ခံရလဲ (သို့မဟုတ်) ဖိသိပ်ခံရလဲဆိုတဲ့ ပမာဏ (Scalar) ကို တိုင်းတာပေးတာပါ။
+ဒီ Linear Algebra သဘောတရားတွေကို အခြေခံထားတဲ့ SVD နဲ့ PCA လို နည်းပညာတွေကို Recommendation Systems တွေမှာ Data ရဲ့ ပမာဏကို လျှော့ချဖို့ (Dimensionality Reduction) နဲ့ ပုံစံတူအကြံပြုချက်တွေ ထုတ်ပေးဖို့ သုံးပါတယ်။ ဒါကြောင့် 3D မှာ မြင်တွေ့ရတဲ့ Geometric Transformations ဟာ Deep Neural Network ရဲ့ Layer တစ်ခုချင်းစီအတွင်းမှာ အမှန်တကယ်ဖြစ်ပျက်နေတဲ့ သဘောတရားပဲဖြစ်ပါတယ်။`,
     keywords: ['Weight Matrices', 'PCA', 'SVD', 'Embeddings', 'Attention Mechanism'],
   },
   calculus: {
     title: 'AI တွင် Calculus ၏ အခန်းကဏ္ဍ',
     icon: '📐',
-    description: `<strong>Backpropagation</strong> ဆိုသည်မှာ Chain Rule ကို ထပ်ခါတလဲလဲ အသုံးပြုထားခြင်းဖြစ်သည် - 
-      ၎င်းသည် ကွန်ရက်အတွင်းရှိ Weight တစ်ခုစီအတွက် Loss Function ၏ Gradient ကို တွက်ချက်ပေးသည်။ 
-      Surface ပေါ်တွင် သင်မြင်ရသော Gradient Vectors များသည် မတ်စောက်ဆုံး တက်လှမ်းရာ ဦးတည်ချက်ကို ပြသသည်။ 
-      Neural Networks များသည် Loss ကို အနည်းဆုံးဖြစ်စေရန် <em>Negative</em> Gradient အတိုင်း လိုက်နာပြီး 
-      Data များမှတစ်ဆင့် တစ်ဆင့်ချင်း သင်ယူကြသည်။`,
+    description: `Backpropagation ဆိုတာ အခြေခံအားဖြင့် Calculus ရဲ့ Chain Rule ကို ကွန်ရက်တစ်ခုလုံးမှာ ထပ်ခါတလဲလဲ အသုံးချပြီး Neural Network အတွင်းရှိ Weight တစ်ခုစီအတွက် Loss Function ၏ Gradient (Partial Derivatives) ကို နောက်ပြန်တွက်ချက်ပေးတဲ့ လုပ်ငန်းစဉ်ဖြစ်ပါတယ်။
+Loss Surface ပေါ်မှာ မြင်တွေ့ရတဲ့ Gradient Vectors တွေဟာ အမှားအများဆုံး (သို့မဟုတ်) အမတ်စောက်ဆုံး တက်လှမ်းရာ ဦးတည်ချက်ကို ညွှန်ပြနေတာပါ။ ဒါကြောင့် Neural Networks တွေဟာ အမှား (Loss) ကို အနည်းဆုံးဖြစ်စေမယ့် လမ်းကြောင်းကို ရှာဖွေဖို့ Gradient ရဲ့ ဆန့်ကျင်ဘက် လားရာဖြစ်တဲ့ Negative Gradient အတိုင်း (Gradient Descent နည်းလမ်းဖြင့်) လိုက်နာဆင်းသက်ပြီး၊ Data တွေထဲကနေ Pattern တွေကို တစ်ဆင့်ချင်းစီ အကောင်းဆုံး သင်ယူသွားကြတာ ဖြစ်ပါတယ်။`,
     keywords: ['Backpropagation', 'Chain Rule', 'Gradient', 'Partial Derivatives', 'Jacobian'],
   },
   probability: {
     title: 'AI တွင် Probability & Statistics ၏ အခန်းကဏ္ဍ',
     icon: '🎲',
-    description: `Gaussian Distributions သည် AI ၏ နေရာတိုင်းတွင် ရှိနေသည် - 
-      Latent Spaces များကို သင်ယူသော <strong>Variational Autoencoders</strong> (VAEs) မှစ၍ 
-      မရေရာမှု (Uncertainty) ကို တိုင်းတာသော <strong>Bayesian Neural Networks</strong> အထိ ဖြစ်သည်။ 
-      ယခုမြင်ရသော ခေါင်းလောင်းပုံစံ (Bell Curve) သည် AI က Data ပျံ့နှံ့မှုကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို ကိုယ်စားပြုပြီး 
-      Reparameterization Trick သည် Random Sampling မှတစ်ဆင့် Gradients တွေဖြစ်ပေါ်မှုကို ခွင့်ပြုပေးသည်။`,
+    description: `Gaussian Distributions Theory ဟာ AI ရဲ့ နေရာတိုင်းမှာ အရေးပါတဲ့ အခန်းကဏ္ဍကရှိနေပါတယ်။ ကွန်ရက်ရဲ့ Latent Spaces ကို Probability Distributions အဖြစ် သင်ယူရယူတဲ့ Variational Autoencoders (VAEs) ကနေစလို့၊ ခန့်မှန်းချက်တွေရဲ့ မရေရာမှု (Uncertainty) ကို တိတိကျကျ တိုင်းတာပေးတဲ့ Bayesian Neural Networks အထိ တွင်တွင်ကျယ်ကျယ် အသုံးပြုကြပါတယ်။ အခုမြင်တွေ့ရတဲ့ ခေါင်းလောင်းပုံစံ Bell Curve ဟာ AI က Data ရဲ့ တကယ့်သဘာဝ ပျံ့နှံ့မှုပုံစံ (Data Distribution) ကို ဘယ်လိုပုံဖော် တွက်ချက်ရမလဲဆိုတာကို ကိုယ်စားပြုတာပါ။ ဒါ့အပြင် VAEs တွေမှာ မရှိမဖြစ်လိုအပ်တဲ့ Reparameterization Trick က Random Sampling လုပ်ငန်းစဉ်အတွင်း ကွန်ရက်ရဲ့ Gradient တွေ ရှေ့နောက် တိုက်ရိုက်စီးဆင်းနိုင်အောင် (Differentiable ဖြစ်အောင်) သင်္ချာနည်းအရ လမ်းဖွင့်ပေးပြီး Data ကနေ ဆက်တိုက်သင်ယူမှုကို ဖြစ်ပေါ်စေတာဖြစ်ပါတယ်။`,
     keywords: ['Bayesian Inference', 'VAE', 'GMM', 'Maximum Likelihood', 'Prior/Posterior'],
   },
   optimization: {
     title: 'AI တွင် Optimization ၏ အခန်းကဏ္ဍ',
     icon: '🎯',
-    description: `Neural Network တစ်ခုကို Train ခြင်းသည် <strong>Optimization Problem</strong> တစ်ခုဖြစ်သည် - 
-      ၎င်းမှာ Loss Function ကို အနည်းဆုံးဖြစ်စေမည့် Parameters များကို ရှာဖွေခြင်းဖြစ်သည်။ 
-      Loss Landscape ပေါ်တွင် ရွေ့လျားနေသော ဘောလုံးလေးများသည် <strong>Adam</strong> နှင့် <strong>SGD 
-      with Momentum</strong> ကဲ့သို့သော Optimizers များက ပိုမိုကောင်းမွန်သော အဖြေများကို ရှာဖွေရန် 
-      Local Minima နှင့် Saddle Points များမှ မည်သို့ ရုန်းထွက်သည်ကို ပြသပေးသည်။ 
-      Optimizer ရွေးချယ်မှုနှင့် Learning Rate သည် Training အောင်မြင်မှုအပေါ် များစွာ သက်ရောက်မှုရှိသည်။`,
+    description: `Neural Network တစ်ခုကို Train ခြင်းဟာ အခြေခံအားဖြင့် Non-convex Optimization Problem တစ်ခုဖြစ်ပြီး၊ ၎င်းရဲ့ ရည်ရွယ်ချက်ကတော့ Loss Function ကို အနည်းဆုံးဖြစ်စေမယ့် Parameters (Weights & Biases) တွေကို ရှာဖွေဖို့ဖြစ်ပါတယ်။ ရှုပ်ထွေးလှတဲ့ Loss Landscape ပေါ်မှာ လိမ့်ဆင်းနေတဲ့ ဘောလုံးလေးတွေရဲ့ ပုံရိပ်ဟာ SGD with Momentum နဲ့ Adam လိုမျိုး ခေတ်မီ Optimizers တွေက ပိုမိုကောင်းမွန်တဲ့ Global Minimum ကို ရှာဖွေဖို့အတွက် လမ်းခုလတ်က Local Minima နဲ့ Saddle Points ရဲ့ ထောင်ချောက်တွေထဲကနေ အရှိန်အဟုန်နဲ့ မည်သို့ ရုန်းထွက်ကျော်ဖြတ်ကြသည်ကို ကောင်းစွာကိုယ်စားပြုပါတယ်။ ထို့ကြောင့် စနစ်တစ်ခုလုံး အောင်မြင်စွာ သင်ယူနိုင်ဖို့အတွက် သင့်တော်တဲ့ Optimizer ကို ရွေးချယ်မှုနဲ့ ကွန်ရက်ရဲ့ ခြေလှမ်းအကျဉ်းအကျယ်ကို ထိန်းချုပ်တဲ့ Learning Rate ကို စနစ်တကျ ချိန်ညှိမှု (Hyperparameter Tuning) တို့ဟာ Training လုပ်ငန်းစဉ် အောင်မြင်မှုအပေါ် သော့ချက်ကျကျ သက်ရောက်မှု ရှိနေတာဖြစ်ပါတယ်။`,
     keywords: ['SGD', 'Adam', 'Momentum', 'Learning Rate', 'Loss Landscape'],
   },
 };
