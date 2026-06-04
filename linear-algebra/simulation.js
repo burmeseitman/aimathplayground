@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 0);
 
   // Preset buttons
-  document.getElementById('preset-identity').addEventListener('click', () => setPreset([1,0,0, 0,1,0, 0,0,1]));
+  document.getElementById('preset-identity').addEventListener('click', () => setPreset([1, 0, 0, 0, 1, 0, 0, 0, 1]));
   document.getElementById('preset-rotation').addEventListener('click', () => {
     const a = Math.PI / 4;
     setPreset([Math.cos(a), -Math.sin(a), 0, Math.sin(a), Math.cos(a), 0, 0, 0, 1]);
   });
-  document.getElementById('preset-scale').addEventListener('click', () => setPreset([2,0,0, 0,0.5,0, 0,0,1.5]));
-  document.getElementById('preset-shear').addEventListener('click', () => setPreset([1,0.8,0, 0,1,0.5, 0.3,0,1]));
+  document.getElementById('preset-scale').addEventListener('click', () => setPreset([2, 0, 0, 0, 0.5, 0, 0, 0, 1.5]));
+  document.getElementById('preset-shear').addEventListener('click', () => setPreset([1, 0.8, 0, 0, 1, 0.5, 0.3, 0, 1]));
 
   // Initial computation
   compute();
@@ -71,7 +71,7 @@ function compute() {
     { key: 'Eigenvalue λ₁', value: fmt(analysis.eigenvalues[0]) },
     { key: 'Eigenvalue λ₂', value: fmt(analysis.eigenvalues[1]) },
     { key: 'Eigenvalue λ₃', value: fmt(analysis.eigenvalues[2]) },
-    { key: 'ဦးတည်ရာ (Orientation)', value: analysis.orientationPreserved ? '✅ ပုံမှန်ရှိသည် (Preserved)' : '🔄 ပြောင်းပြန်ဖြစ်သည် (Reversed)' },
+    { key: 'Orientation', value: analysis.orientationPreserved ? '✅ Preserved' : '🔄 Reversed' },
   ]);
 
   // Update 3D visualization

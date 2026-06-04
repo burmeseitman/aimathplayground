@@ -23,9 +23,9 @@ export const COLORS = {
 
 export const PILLAR_COLORS = {
   'linear-algebra': { main: '#00d4ff', glow: 'rgba(0, 212, 255, 0.3)', hex: 0x00d4ff },
-  calculus:         { main: '#8b5cf6', glow: 'rgba(139, 92, 246, 0.3)', hex: 0x8b5cf6 },
-  probability:     { main: '#10b981', glow: 'rgba(16, 185, 129, 0.3)', hex: 0x10b981 },
-  optimization:    { main: '#f59e0b', glow: 'rgba(245, 158, 11, 0.3)', hex: 0xf59e0b },
+  calculus: { main: '#8b5cf6', glow: 'rgba(139, 92, 246, 0.3)', hex: 0x8b5cf6 },
+  probability: { main: '#10b981', glow: 'rgba(16, 185, 129, 0.3)', hex: 0x10b981 },
+  optimization: { main: '#f59e0b', glow: 'rgba(245, 158, 11, 0.3)', hex: 0xf59e0b },
 };
 
 // ── 3D Camera Defaults ──────────────────────────────────────
@@ -60,10 +60,10 @@ export const AI_CONTEXT = {
   'linear-algebra': {
     title: 'AI တွင် Linear Algebra ၏ အခန်းကဏ္ဍ',
     icon: '🔢',
-    description: `Neural Network layer တိုင်းသည် <strong>Matrix-Vector Multiplication</strong> ကို လုပ်ဆောင်သည် - 
+    description: `Neural Network Layer တိုင်းသည် <strong>Matrix-Vector Multiplication</strong> ကို လုပ်ဆောင်သည် - 
       Weight Matrix က Input Features များကို ကိုယ်စားပြုမှုအသစ်များအဖြစ်သို့ အသွင်ပြောင်းပေးသည်။ 
       Eigenvalues များသည် မည်သည့် ဦးတည်ချက်များက အပြောင်းလဲဆုံးအခြေအနေကို သယ်ဆောင်သည်ကို ဖော်ပြပေးပြီး (PCA)၊ 
-      SVD သည် Recommendation Systems များကို စွမ်းအားပေးသည်။ သင် 3D တွင် မြင်တွေ့ရသော အသွင်ပြောင်းမှု (Transformation) သည် 
+      SVD သည် Recommendation Systems များကို လုပ်ဆောင်ပေးသည်။ သင် 3D တွင် မြင်တွေ့ရသော Transformation သည် 
       Deep Neural Network ၏ Layer တစ်ခုချင်းစီအတွင်း၌ <em>အမှန်တကယ်</em> ဖြစ်ပျက်နေသော အရာပင် ဖြစ်သည်။`,
     keywords: ['Weight Matrices', 'PCA', 'SVD', 'Embeddings', 'Attention Mechanism'],
   },
@@ -74,7 +74,7 @@ export const AI_CONTEXT = {
       ၎င်းသည် ကွန်ရက်အတွင်းရှိ Weight တစ်ခုစီအတွက် Loss Function ၏ Gradient ကို တွက်ချက်ပေးသည်။ 
       Surface ပေါ်တွင် သင်မြင်ရသော Gradient Vectors များသည် မတ်စောက်ဆုံး တက်လှမ်းရာ ဦးတည်ချက်ကို ပြသသည်။ 
       Neural Networks များသည် Loss ကို အနည်းဆုံးဖြစ်စေရန် <em>Negative</em> Gradient အတိုင်း လိုက်နာပြီး 
-      ဒေတာများမှတစ်ဆင့် တစ်ဆင့်ချင်း သင်ယူကြသည်။`,
+      Data များမှတစ်ဆင့် တစ်ဆင့်ချင်း သင်ယူကြသည်။`,
     keywords: ['Backpropagation', 'Chain Rule', 'Gradient', 'Partial Derivatives', 'Jacobian'],
   },
   probability: {
@@ -83,8 +83,8 @@ export const AI_CONTEXT = {
     description: `Gaussian Distributions သည် AI ၏ နေရာတိုင်းတွင် ရှိနေသည် - 
       Latent Spaces များကို သင်ယူသော <strong>Variational Autoencoders</strong> (VAEs) မှစ၍ 
       မရေရာမှု (Uncertainty) ကို တိုင်းတာသော <strong>Bayesian Neural Networks</strong> အထိ ဖြစ်သည်။ 
-      သင်မြင်ရသော ခေါင်းလောင်းပုံဆွဲချက် (Bell Curve) သည် AI က ဒေတာပျံ့နှံ့မှုကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို ကိုယ်စားပြုပြီး 
-      Reparameterization Trick သည် Random Sampling မှတစ်ဆင့် Gradients စီးဆင်းမှုကို ခွင့်ပြုပေးသည်။`,
+      ယခုမြင်ရသော ခေါင်းလောင်းပုံစံ (Bell Curve) သည် AI က Data ပျံ့နှံ့မှုကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို ကိုယ်စားပြုပြီး 
+      Reparameterization Trick သည် Random Sampling မှတစ်ဆင့် Gradients တွေဖြစ်ပေါ်မှုကို ခွင့်ပြုပေးသည်။`,
     keywords: ['Bayesian Inference', 'VAE', 'GMM', 'Maximum Likelihood', 'Prior/Posterior'],
   },
   optimization: {
@@ -92,7 +92,7 @@ export const AI_CONTEXT = {
     icon: '🎯',
     description: `Neural Network တစ်ခုကို Train ခြင်းသည် <strong>Optimization Problem</strong> တစ်ခုဖြစ်သည် - 
       ၎င်းမှာ Loss Function ကို အနည်းဆုံးဖြစ်စေမည့် Parameters များကို ရှာဖွေခြင်းဖြစ်သည်။ 
-      Loss Landscape ပေါ်တွင် ရွေ့လျားနေသော ဘောလုံးလေးသည် <strong>Adam</strong> နှင့် <strong>SGD 
+      Loss Landscape ပေါ်တွင် ရွေ့လျားနေသော ဘောလုံးလေးများသည် <strong>Adam</strong> နှင့် <strong>SGD 
       with Momentum</strong> ကဲ့သို့သော Optimizers များက ပိုမိုကောင်းမွန်သော အဖြေများကို ရှာဖွေရန် 
       Local Minima နှင့် Saddle Points များမှ မည်သို့ ရုန်းထွက်သည်ကို ပြသပေးသည်။ 
       Optimizer ရွေးချယ်မှုနှင့် Learning Rate သည် Training အောင်မြင်မှုအပေါ် များစွာ သက်ရောက်မှုရှိသည်။`,
@@ -107,7 +107,7 @@ export const PILLARS = [
     name: 'Linear Algebra',
     icon: '🔢',
     subtitle: 'Vectors, Matrices & Transformations',
-    desc: 'Matrix transformations များက Neural Network layers များ၊ PCA နှင့် Data Embeddings များကို မည်သို့ စွမ်းအားပေးသည်ကို လေ့လာစူးစမ်းပါ။',
+    desc: 'Matrix Transformations များမှ Neural Network Layers များ၊ PCA နှင့် Data Embeddings များ၏ အခြေခံဖြစ်ပေါ်ပုံကို လေ့လာခြင်း။',
     href: './linear-algebra/index.html',
   },
   {
@@ -115,7 +115,7 @@ export const PILLARS = [
     name: 'Calculus',
     icon: '📐',
     subtitle: 'Gradients, Derivatives & Chain Rule',
-    desc: '3D surfaces ပေါ်ရှိ Gradient Vectors များကို ပုံဖော်ကြည့်ရှုပြီး Backpropagation ကို နားလည်သဘောပေါက်စေရန် လေ့လာပါ။',
+    desc: '3D Surfaces ပေါ်ရှိ Gradient Vectors များကို ပုံဖော်ကြည့်ရှုပြီး Backpropagation မည်သို့ အလုပ်လုပ်သည်ကို နားလည်သဘောပေါက်စေရန် လေ့လာခြင်း။',
     href: './calculus/index.html',
   },
   {
@@ -123,7 +123,7 @@ export const PILLARS = [
     name: 'Probability & Statistics',
     icon: '🎲',
     subtitle: 'Distributions, Bayes & Sampling',
-    desc: 'Multivariate Gaussian Distributions များကို ပုံဖော်ပြီး AI က မရေရာမှု (Uncertainty) များကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို ကြည့်ရှုပါ။',
+    desc: 'Multivariate Gaussian Distributions များကို ပုံဖော်ပြီး AI က မရေရာမှု (Uncertainty) များကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို လေ့လာခြင်း။',
     href: './probability/index.html',
   },
   {
@@ -131,7 +131,7 @@ export const PILLARS = [
     name: 'Optimization',
     icon: '🎯',
     subtitle: 'Gradient Descent, Momentum & Adam',
-    desc: '3D Loss Landscapes ပေါ်တွင် Optimizers များကို ယှဉ်ပြိုင်ပြေးစေပြီး Neural Networks များ မည်သို့ သင်ယူလေ့လာသည်ကို ရှာဖွေပါ။',
+    desc: '3D Loss Landscapes ပေါ်တွင် Optimizers များကို လုပ်ဆောင်စေပြီး Neural Networks များ မည်သို့သင်ယူလေ့လာသည်ကို လေ့လာခြင်း။',
     href: './optimization/index.html',
   },
 ];

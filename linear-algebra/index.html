@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive 3D simulation of linear algebra matrix transformations — see how neural network weight matrices transform data in AI.">
+  <meta name="description"
+    content="Interactive 3D simulation of linear algebra matrix transformations — see how neural network weight matrices transform data in AI.">
   <title>Linear Algebra — AI Math Toolkits</title>
   <link rel="stylesheet" href="../common/styles.css">
   <link rel="stylesheet" href="../common/components.css">
@@ -17,6 +19,7 @@
   }
   </script>
 </head>
+
 <body>
   <!-- Navigation -->
   <header class="nav" id="nav-bar"></header>
@@ -30,7 +33,7 @@
         <div class="panel animate-fade-in-up">
           <div class="panel-header">
             <span class="panel-icon">📥</span>
-            <h3>ထည့်သွင်းမှု — Transformation Matrix</h3>
+            <h3>Transformation Matrix</h3>
           </div>
 
           <!-- 3x3 Matrix Input -->
@@ -51,7 +54,7 @@
 
           <!-- Presets -->
           <div class="input-group">
-            <label class="input-label">အမြန်ရွေးချယ်စရာများ (Quick Presets)</label>
+            <label class="input-label">Quick Presets</label>
             <div style="display:flex; flex-wrap:wrap; gap:6px;">
               <button class="btn btn-outline btn-sm" id="preset-identity">Identity</button>
               <button class="btn btn-outline btn-sm" id="preset-rotation">Rotation 45°</button>
@@ -62,7 +65,7 @@
 
           <!-- Point Count -->
           <div class="input-group">
-            <label class="input-label">နမူနာအမှတ်များ (Sample Points)</label>
+            <label class="input-label">Sample Points</label>
             <div class="slider-container">
               <div class="slider-row">
                 <input type="range" id="num-points" min="50" max="500" value="200" step="10">
@@ -100,4 +103,5 @@
 
   <script type="module" src="simulation.js"></script>
 </body>
+
 </html>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive 3D simulations of the 4 foundational math pillars of Artificial Intelligence: Linear Algebra, Calculus, Probability & Statistics, and Optimization.">
+  <meta name="description"
+    content="Interactive 3D simulations of the 4 foundational math pillars of Artificial Intelligence: Linear Algebra, Calculus, Probability & Statistics, and Optimization.">
   <title>AI Math Toolkits — The 4 Pillars of AI Mathematics</title>
   <link rel="stylesheet" href="common/styles.css">
   <style>
@@ -89,7 +91,7 @@
       position: absolute;
       inset: 0;
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, var(--card-color, rgba(0,212,255,0.08)), transparent 60%);
+      background: linear-gradient(135deg, var(--card-color, rgba(0, 212, 255, 0.08)), transparent 60%);
       opacity: 0;
       transition: opacity 0.35s ease;
     }
@@ -109,16 +111,19 @@
       --card-accent: #00d4ff;
       --card-glow: rgba(0, 212, 255, 0.15);
     }
+
     .pillar-card[data-pillar="calculus"] {
       --card-color: rgba(139, 92, 246, 0.08);
       --card-accent: #8b5cf6;
       --card-glow: rgba(139, 92, 246, 0.15);
     }
+
     .pillar-card[data-pillar="probability"] {
       --card-color: rgba(16, 185, 129, 0.08);
       --card-accent: #10b981;
       --card-glow: rgba(16, 185, 129, 0.15);
     }
+
     .pillar-card[data-pillar="optimization"] {
       --card-color: rgba(245, 158, 11, 0.08);
       --card-accent: #f59e0b;
@@ -197,6 +202,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Animated Background -->
   <canvas id="bg-canvas"></canvas>
@@ -204,10 +210,13 @@
   <div class="landing">
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-badge">✨ အပြန်အလှန်သက်ရောက်မှုရှိသော 3D Simulations</div>
-      <h1>AI ၏ အခြေခံ သင်္ချာမဏ္ဍိုင်ကြီး ၄ ခု</h1>
+      <div class="hero-badge">✨ Interactive 3D Simulations</div>
+      <div class="hero-title">
+        <h1>AI ၏ အခြေခံ သင်္ချာမဏ္ဍိုင်ကြီး ၄ ခု</h1>
+      </div>
       <p class="hero-subtitle">
-        Neural Network transformations မှစ၍ Optimizer dynamics အထိ Artificial Intelligence (AI) ကို စွမ်းအားပေးထားသည့် အခြေခံ သင်္ချာဘာသာရပ်များကို လှည့်ပတ်ကြည့်ရှုနိုင်သော 3D Visualizations များမှတစ်ဆင့် လေ့လာစူးစမ်းပါ။
+        Neural Network Transformations မှစ၍ Optimizer Dynamics အထိ Artificial Intelligence (AI) ဆိုတာဖြစ်လာစေတဲ့ အခြေခံ
+        သင်္ချာတွက်ချက်ပုံနည်းစနစ်များကို 3D Visualizations များမှတစ်ဆင့် လေ့လာစူးစမ်းခြင်း။
       </p>
     </section>
 
@@ -218,7 +227,8 @@
         <div class="card-title">Linear Algebra</div>
         <div class="card-subtitle">Vectors, Matrices & Transformations</div>
         <p class="card-desc">
-          Matrix transformations များက Neural Network layers များ၊ PCA နှင့် Data Embeddings များကို မည်သို့ စွမ်းအားပေးသည်ကို လေ့လာစူးစမ်းပါ။
+          Matrix Transformations များမှ Neural Network Layers များ၊ PCA နှင့် Data Embeddings များ၏ အခြေခံဖြစ်ပေါ်ပုံကို
+          လေ့လာခြင်း။။
         </p>
         <span class="card-arrow">→</span>
       </a>
@@ -228,7 +238,8 @@
         <div class="card-title">Calculus</div>
         <div class="card-subtitle">Gradients, Derivatives & Chain Rule</div>
         <p class="card-desc">
-          3D surfaces ပေါ်ရှိ Gradient Vectors များကို ပုံဖော်ကြည့်ရှုပြီး Backpropagation မည်သို့ အလုပ်လုပ်သည်ကို နားလည်သဘောပေါက်စေရန် လေ့လာပါ။
+          3D Surfaces ပေါ်ရှိ Gradient Vectors များကို ပုံဖော်ကြည့်ရှုပြီး Backpropagation မည်သို့ အလုပ်လုပ်သည်ကို
+          နားလည်သဘောပေါက်စေရန် လေ့လာခြင်း။
         </p>
         <span class="card-arrow">→</span>
       </a>
@@ -238,7 +249,8 @@
         <div class="card-title">Probability & Statistics</div>
         <div class="card-subtitle">Distributions, Bayes & Sampling</div>
         <p class="card-desc">
-          Multivariate Gaussian Distributions များကို ပုံဖော်ပြီး AI က မရေရာမှု (Uncertainty) များကို မည်သို့ ပုံဖော်တွက်ချက်သည်ကို ကြည့်ရှုပါ။
+          Multivariate Gaussian Distributions များကို ပုံဖော်ပြီး AI က မရေရာမှု (Uncertainty) များကို မည်သို့
+          ပုံဖော်တွက်ချက်သည်ကို လေ့လာခြင်း။
         </p>
         <span class="card-arrow">→</span>
       </a>
@@ -248,14 +260,15 @@
         <div class="card-title">Optimization</div>
         <div class="card-subtitle">Gradient Descent, Momentum & Adam</div>
         <p class="card-desc">
-          3D Loss Landscapes ပေါ်တွင် Optimizers များကို ယှဉ်ပြိုင်ပြေးစေပြီး Neural Networks များ မည်သို့ သင်ယူလေ့လာသည်ကို ရှာဖွေပါ။
+          3D Loss Landscapes ပေါ်တွင် Optimizers များကို လုပ်ဆောင်စေပြီး Neural Networks များ မည်သို့သင်ယူလေ့လာသည်ကို
+          လေ့လာခြင်း။
         </p>
         <span class="card-arrow">→</span>
       </a>
     </section>
 
     <footer class="landing-footer">
-      AI Math Toolkits — ဉာဏ်ရည်တု၏ နောက်ကွယ်မှ သင်္ချာသဘောတရားများကို နားလည်သဘောပေါက်ခြင်း
+      AI Math Toolkits — AI ၏ နောက်ကွယ်မှ သင်္ချာသဘောတရားများကို နားလည်သဘောပေါက်စေရန် လေ့လာခြင်း
     </footer>
   </div>
 
@@ -343,4 +356,5 @@
     })();
   </script>
 </body>
+
 </html>
