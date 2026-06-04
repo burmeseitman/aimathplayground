@@ -109,11 +109,16 @@
         </div>
       </div>
 
-      <!-- 3D Viewport -->
+      <!-- Viewport / ANN Workspace -->
       <div class="viewport-container animate-fade-in-up" style="animation-delay: 0.15s;">
+        <div class="viewport-toggles">
+          <button class="view-toggle-btn active" id="btn-view-3d">🌐 3D Space View</button>
+          <button class="view-toggle-btn" id="btn-view-ann">🧠 Neural Network View</button>
+        </div>
         <div id="viewport" style="width:100%; height:100%;"></div>
+        <div id="ann-viewport" style="width:100%; height:100%; display:none; background: #0a0a0f;"></div>
         <div class="viewport-badge">🔢 Linear Algebra</div>
-        <div class="viewport-hint">🖱️ လှည့်ရန် ဖိဆွဲပါ · ချုံ့/ချဲ့ရန် Scroll သုံးပါ</div>
+        <div class="viewport-hint" id="viewport-hint">🖱️ လှည့်ရန် ဖိဆွဲပါ · ချုံ့/ချဲ့ရန် Scroll သုံးပါ</div>
       </div>
 
       <!-- AI Context -->
